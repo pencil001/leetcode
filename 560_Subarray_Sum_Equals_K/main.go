@@ -3,11 +3,9 @@ package main
 import "fmt"
 
 func main() {
-	// nums := []int{1, 1, 1}
-	// k := 2
-	nums := []int{1, 1, 1, 2}
-	k := 2
-	fmt.Println(subarraySum(nums, k))
+	fmt.Println(subarraySum2([]int{1, 1, 1}, 2))                      // should be 2
+	fmt.Println(subarraySum2([]int{-1, -1, 1}, 1))                    // should be 1
+	fmt.Println(subarraySum2([]int{0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, 0)) // should be 55
 }
 
 func subarraySum(nums []int, k int) int {
@@ -28,4 +26,20 @@ func sumAll(nums []int, k int) int {
 		}
 	}
 	return res
+}
+
+func subarraySum2(nums []int, k int) int {
+	hash := make(map[int]int)
+	hash[0] = 1
+
+	sum := 0
+	count := 0
+	for _, v := range nums {
+		sum += v
+		if n, ok := hash[sum-k]; ok {
+			count += n
+		}
+		hash[sum]++
+	}
+	return count
 }
