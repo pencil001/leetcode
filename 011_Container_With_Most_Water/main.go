@@ -5,7 +5,8 @@ import (
 )
 
 func main() {
-	fmt.Println(maxArea([]int{1, 8, 6, 2, 5, 4, 8, 3, 7}) == 49)
+	fmt.Println(maxArea2([]int{1, 8, 6, 2, 5, 4, 8, 3, 7}) == 49)
+	fmt.Println(maxArea2([]int{}) == 0)
 }
 
 func maxArea(height []int) int {
@@ -28,4 +29,39 @@ func maxArea(height []int) int {
 		}
 	}
 	return max
+}
+
+func maxArea2(height []int) int {
+	maxA := 0
+	l := 0
+	r := len(height) - 1
+
+	for l < r {
+		h1 := height[l]
+		h2 := height[r]
+		h := min(h1, h2)
+		maxA = max(maxA, h*(r-l))
+		if h1 < h2 {
+			l++
+		} else {
+			r--
+		}
+	}
+	return maxA
+}
+
+func min(v1, v2 int) int {
+	if v1 < v2 {
+		return v1
+	} else {
+		return v2
+	}
+}
+
+func max(v1, v2 int) int {
+	if v1 < v2 {
+		return v2
+	} else {
+		return v1
+	}
 }
