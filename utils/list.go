@@ -22,6 +22,7 @@ func NewList(nums []int) *ListNode {
 
 func WalkList(head *ListNode) {
 	if head == nil {
+		fmt.Println()
 		return
 	}
 
