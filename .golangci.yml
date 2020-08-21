@@ -21,6 +21,7 @@ linters:
     - lll
     - unparam
     - dupl
+    - wsl
   exclude-use-default:
     - should not use dot imports
 
